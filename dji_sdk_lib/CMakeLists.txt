@@ -27,7 +27,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(include/dji_sdk_lib)
+include_directories(include/dji_sdk_lib include)
 
 ## Declare a C++ library
 FILE(GLOB DJI_SDK_LIB_SOURCES src/*.cpp)
