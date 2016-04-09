@@ -63,11 +63,11 @@ void DJI::onboardSDK::CoreAPI::appHandler(Header *header)
                     API_LOG(driver, DEBUG_LOG, "Recv Session %d ACK\n", p2header->sessionID);
 
                     callBack = CMDSessionTab[header->sessionID].handler;
-                    freeSession(&CMDSessionTab[header->sessionID]);
-                    driver->freeMemory();
                     if (callBack)
                         //! @todo new algorithm call in a thread
                         callBack(this, header, CMDSessionTab[header->sessionID].userData);
+                    freeSession(&CMDSessionTab[header->sessionID]);
+                    driver->freeMemory();
                 }
                 else
                     driver->freeMemory();
@@ -175,6 +175,7 @@ void DJI::onboardSDK::CoreAPI::sendPoll()
             }
         }
     }
+    //! @note add auto resendpoll
 }
 
 void DJI::onboardSDK::CoreAPI::readPoll()
@@ -258,7 +259,6 @@ int DJI::onboardSDK::CoreAPI::ackInterface(Ack *parameter)
                                calculateLength(parameter->length, parameter->encrypt));
         if (ack_session == (ACKSession *)NULL)
         {
-            API_LOG(driver, ERROR_LOG, "there is not enough memory\n");
             driver->freeMemory();
             return -1;
         }

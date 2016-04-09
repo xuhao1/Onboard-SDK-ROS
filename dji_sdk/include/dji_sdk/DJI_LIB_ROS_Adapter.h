@@ -99,7 +99,7 @@ class ROSAdapter {
             else
                 ROS_INFO("Succeed to create thread for readPoll");
 
-            coreAPI->getVersion();
+            coreAPI->getSDKVersion();
         }
 
 
@@ -116,20 +116,20 @@ class ROSAdapter {
 
 		template<class T>
 		void setFromMobileCallback( void (T::*func)(uint8_t *, uint8_t), T *obj) {
-		m_fromMobileCallback = std::bind(func, obj, std::placeholders::_1, std::placeholders::_2);
-		coreAPI->setFromMobileCallback(&ROSAdapter::fromMobileCallback, (UserData)this);
+			m_fromMobileCallback = std::bind(func, obj, std::placeholders::_1, std::placeholders::_2);
+			//coreAPI->setFromMobileCallback(&ROSAdapter::fromMobileCallback);
 		}
 
 		template<class T>
 		void setMissionStatusCallback( void (T::*func)(uint8_t *, uint8_t), T *obj) {
 		m_missionStatusCallback= std::bind(func, obj, std::placeholders::_1, std::placeholders::_2);
-		coreAPI->setWayPointCallback(&ROSAdapter::missionStatusCallback, (UserData)this);
+		//coreAPI->setWayPointCallback(&ROSAdapter::missionStatusCallback);
 		}
 
 		template<class T>
 		void setMissionEventCallback( void (T::*func)(uint8_t *, uint8_t), T *obj) {
 		m_missionEventCallback = std::bind(func, obj, std::placeholders::_1, std::placeholders::_2);
-		coreAPI->setWayPointEventCallback(&ROSAdapter::missionEventCallback, (UserData)this);
+		//coreAPI->setWayPointEventCallback(&ROSAdapter::missionEventCallback, (UserData)this);
 		}
 
 /*

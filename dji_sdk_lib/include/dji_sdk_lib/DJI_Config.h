@@ -36,13 +36,19 @@
 #define API_ERROR_DATA
 #define API_STATUS_DATA
 
+#ifdef SDK_VERSION_3_1_A3
+//#define API_RTK_DEBUG
+#endif
+
 //#define SDK_VERSION_2_3
-#define SDK_VERSION_3_1_M100
-//#define SDK_VERSION_3_1_A3
+//#define SDK_VERSION_3_1_M100
+#define SDK_VERSION_3_1_A3
+//#define SDK_VERSION_3_1_POTATO
 
 //! @note if you do not want to use AES encrypt, comment this micro below
 #define USE_ENCRYPT
+#define USE_SIMULATION
 
-#include "DJI_Version.h"
+#include <DJI_Version.h>
 
 #endif // DJI_CONFIG_H
